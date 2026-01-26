@@ -6,9 +6,10 @@ import DashboardLayout from './components/layout/DashboardLayout';
 import Login from './pages/Login';
 import Analyze from './pages/Analyze';
 import ProtectedRoute from './context/ProtectedRoute';
+import History from "./pages/History";
+import Landing from "./pages/Landing";
 
 // Mock Pages for now
-const History = () => <div className="p-6"><h1 className="text-2xl font-bold">Analysis History</h1><p>Your previous resumes will appear here.</p></div>;
 const Profile = () => <div className="p-6"><h1 className="text-2xl font-bold">User Profile</h1></div>;
 
 function App() {
@@ -17,12 +18,12 @@ function App() {
       <Router>
         <Routes>
           {/* Public Route */}
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
 
           {/* Protected Routes (Require Login) */}
           <Route element={<ProtectedRoute />}>
             <Route element={<DashboardLayout />}>
-              {/* This is your main workspace */}
               <Route path="/" element={<div>Dashboard</div>} />
               <Route path="/analyze" element={<Analyze />} />
               <Route path="/history" element={<History />} />
